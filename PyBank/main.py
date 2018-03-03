@@ -1,7 +1,7 @@
 import os
 import csv
 
-#Need help understanding what needs to be in () to join paths on os
+#Join file paths
 budget_data_1_csv = os.path.join("..","..","UNCCHAR201802DATA2-Class-Repository-DATA", "Homework", "Week-03-Python", "Instructions", "PyBank", "raw_data", "budget_data_1.csv")
 
 #define variables to track
@@ -68,7 +68,7 @@ print()
 
 
 #Output files
-output_file = os.path.join("..","..","UNCCHAR201802DATA2-Class-Repository-DATA", "Homework", "Week-03-Python", "Instructions", "PyBank", "budget_data_1_txt.txt_file")
+output_file = os.path.join("..","budget_data_1_analysis.txt_file")
 
 with open(output_file, "w", newline="") as txt_file:
     txt_file.write("Total Months: " + str(total_months))
