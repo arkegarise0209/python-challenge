@@ -69,7 +69,7 @@ print()
 
 
 #Output files
-output_file = os.path.join("..","budget_data_1_analysis.txt_file")
+output_file = os.path.join("budget_data_1_analysis.txt")
 
 with open(output_file, "w", newline="") as txt_file:
     txt_file.write("Total Months: " + str(total_months))
