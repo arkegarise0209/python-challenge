@@ -20,32 +20,32 @@ greatest_decrease = ["",9999999999999]
 #Read in the needed csv file
 with open(budget_data_1_csv, newline="") as revenue_data:
     csvreader = csv.reader(revenue_data, delimiter=",")
-    
+    next(csvreader, None)
 #Loop through rows of data
     for row in csvreader:
-
+        
     #Calculate month and revenue totals
         total_months = total_months + 1
-
-        total_revenue = total_revenue + int(row["Revenue"])
-    
+        
+        
+        total_revenue = total_revenue + int(row[1])        
+        
     #Track monthly change in revenue
-        revenue_change = int(row["Revenue"] - prev_revenue)
+        revenue_change = int(row[1]) - prev_revenue
 
     #Update value of prev_revenue for next loop
-        prev_revenue = int(row["Revenue"])
-
+        prev_revenue = int(row[1])
+    
     #Greatest increase in revenue
-        if (revenue_change > greatest_increase[1]):
+        if revenue_change > greatest_increase[1]:
             greatest_increase[1] = revenue_change
-            greatest_increase[0] = row["Date"]
-
+            greatest_increase[0] = row[0]
+     
     #Greatest decrease in revenue
-        if (revenue_change < greatest_decrease[1]):
+        if revenue_change < greatest_decrease[1]:
             greatest_decrease[1] = revenue_change
-            greatest_decrease[0] = row["Date"]
-
-
+            greatest_decrease[0] = row[0]
+    
     #Add monthly change in revenue to monthly_revenue_changes list 
         monthly_revenue_changes.append(int(revenue_change))
 
@@ -54,17 +54,17 @@ with open(budget_data_1_csv, newline="") as revenue_data:
 
 
 
+
 #Display output
-print()
-print()
+print("'''")
 print("Financial Analysis")
-print("-------------------")
+print("----------------------------------")
 print("Total Months: " + str(total_months))
 print("Total Revenue: " + "$" + str(total_revenue))
-print("Average Revenue Change: " + "$" + str(average_monthly_change))
+print("Average Revenue Change: " + "$" + str(int(average_monthly_change)))
 print("Greatest Increase in Revenue: " + str(greatest_increase[0]) + " ($" +  str(greatest_increase[1]) + ")") 
 print("Greatest Decrease in Revenue: " + str(greatest_decrease[0]) + " ($" +  str(greatest_decrease[1]) + ")")
-print("-------------------")
+print("'''")
 print()
 
 
@@ -76,7 +76,7 @@ with open(output_file, "w", newline="") as txt_file:
     txt_file.write("\n")
     txt_file.write("Total Revenue: " + "$" + str(total_revenue))
     txt_file.write("\n")
-    txt_file.write("Average Change: " + "$" + str(round(sum(revenue_changes) / len(revenue_changes),2)))
+    txt_file.write("Average Change: " + "$" + str(average_monthly_change))
     txt_file.write("\n")
     txt_file.write("Greatest Increase: " + str(greatest_increase[0]) + " ($" + str(greatest_increase[1]) + ")") 
     txt_file.write("\n")
