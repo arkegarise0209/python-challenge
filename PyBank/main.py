@@ -1,3 +1,4 @@
+#Dependencies
 import os
 import csv
 
@@ -53,7 +54,7 @@ with open(budget_data_1_csv, newline="") as revenue_data:
 
 
 
-#display output
+#Display output
 print()
 print()
 print("Financial Analysis")
