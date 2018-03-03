@@ -25,7 +25,7 @@ with open(election_data_1_csv, newline="") as election_data:
         
     #Create list of candidates  
         if row["Candidate"] not in candidates:
-            candidates.append(row[2])
+            candidates.append(row["Candidate"])
          
          #Add number of votes per candidate
             outcome[row["Candidate"]] = 1
