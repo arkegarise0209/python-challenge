@@ -1,71 +1,75 @@
 #Dependencies
 import os
 import csv
-from operator import itemgetter
-from collections import OrderedDict
 
 #Join file paths
 election_data_1_csv = os.path.join("..","..","UNCCHAR201802DATA2-Class-Repository-DATA", "Homework", "Week-03-Python", "Instructions", "PyPoll", "raw_data", "election_data_1.csv")
 
 #define variables to track
 total_votes = 0
-candidates = []
-outcome = {}
+candidate_options = []
+election_outcome = {}
 
 #Read in the needed csv file
 with open(election_data_1_csv, newline="") as election_data:
     csvreader = csv.reader(election_data, delimiter=",")
-
+    next(csvreader, None)
 
 #Loop through rows in data
     for row in csvreader:
-
-    #Calculate total number of votes
+    
+     #Calculate total number of votes
         total_votes = total_votes + 1
-        
-    #Create list of candidates  
-        if row["Candidate"] not in candidates:
-            candidates.append(row["Candidate"])
+
+    #Add candidates to list
+        if row[2] not in candidate_options:
+            candidate_options.append(row[2])
          
          #Add number of votes per candidate
-            outcome[row["Candidate"]] = 1
+            election_outcome[row[2]] = 1
             
         else:
-            outcome[row["Candidate"]] = outcome[row["Candidate"]] + 1
+            election_outcome[row[2]] = election_outcome[row[2]] + 1
+    #Display output
+    print()
+    print("'''")
+    print("Election Results")
+    print("-----------------------------")
+    print("Total Votes: " + str(total_votes))
+    print("-----------------------------")
+
+#Loop through dictionary for results of vote (candidate, percent of vote, number of votes)
+    for candidate in election_outcome:
+        election_results = (candidate + ": " + str(round(((election_outcome[candidate]/total_votes)*100))) + "%" + " (" + str(election_outcome[candidate]) + ")") 
+        print(election_results)
 
 
-#Results of vote (candidate, percent of vote, number of votes)
-    for candidate in outcome:
-        candidate_results = (candidate + str(round(((outcome[candidate]/total_votes)*100))) + str(outcome[candidate]))
+#Identify dictionary to parse
+election_outcome
 
-outcome
-
-winner = sorted(outcome.item(), key=itemgetter(0), reverse=True)
+#Correlate winning amount of votes to winning candidate name
+winner = max(election_outcome, key=election_outcome.get)
 
 #Display output
-print()
-print("Election Results")
 print("-----------------------------")
-print("Total Votes: " + str(total_votes))
+print("Winner: " + str(winner))
 print("-----------------------------")
-print(str(candidate) + ": " + str(round(outcome(row[2]) / str(total_votes))*100) + "% " + "(" + str(outcome(row[2] + ")")))
-print("-----------------------------")
-print("Winner: " + str(winner[0]))
-print("-----------------------------")
+print("'''")
 print()
 
 
 #Output files
-output_file = os.path.join("..","election_results_1.txt_file")
+output_file = os.path.join("election_results_1.txt")
 
-with open(file_to_output, "w") as txt_file:
+with open(output_file, "w") as txt_file:
     
+    txt_file.write("'''")
     txt_file.write("Election Results")
-    txt_file.write
-    txt_file.write
-    txt_file.write
-    txt_file.write
-    txt_file.write
-    txt_file.write
-    txt_file.write
-    
+    txt_file.write("-----------------------------")
+    txt_file.write("Total Votes: " + str(total_votes))
+    txt_file.write("-----------------------------")
+    txt_file.write(election_results)
+    txt_file.write("-----------------------------")
+    txt_file.write("Winner: " + str(winner))
+    txt_file.write("-----------------------------")
+    txt_file.write("'''")
