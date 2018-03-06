@@ -43,7 +43,6 @@ with open(election_data_1_csv, newline="") as election_data:
         election_results = (candidate + ": " + str(round(((election_outcome[candidate]/total_votes)*100))) + "%" + " (" + str(election_outcome[candidate]) + ")") 
         print(election_results)
 
-
 #Identify dictionary to parse
 election_outcome
 
@@ -64,12 +63,21 @@ output_file = os.path.join("election_results_1.txt")
 with open(output_file, "w") as txt_file:
     
     txt_file.write("'''")
+    txt_file.write("\n")
     txt_file.write("Election Results")
+    txt_file.write("\n")
     txt_file.write("-----------------------------")
+    txt_file.write("\n")
     txt_file.write("Total Votes: " + str(total_votes))
+    txt_file.write("\n")
     txt_file.write("-----------------------------")
+    txt_file.write("\n")
     txt_file.write(election_results)
+    txt_file.write("\n")
     txt_file.write("-----------------------------")
+    txt_file.write("\n")
     txt_file.write("Winner: " + str(winner))
+    txt_file.write("\n")
     txt_file.write("-----------------------------")
+    txt_file.write("\n")
     txt_file.write("'''")
