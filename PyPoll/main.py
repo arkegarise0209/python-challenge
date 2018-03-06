@@ -8,6 +8,7 @@ election_data_1_csv = os.path.join("..","..","UNCCHAR201802DATA2-Class-Repositor
 #define variables to track
 total_votes = 0
 candidate_options = []
+election_stats = []
 election_outcome = {}
 
 #Read in the needed csv file
@@ -42,7 +43,8 @@ with open(election_data_1_csv, newline="") as election_data:
     for candidate in election_outcome:
         election_results = (candidate + ": " + str(round(((election_outcome[candidate]/total_votes)*100))) + "%" + " (" + str(election_outcome[candidate]) + ")") 
         print(election_results)
-
+        election_stats.append(election_results)
+        
 #Identify dictionary to parse
 election_outcome
 
@@ -72,7 +74,7 @@ with open(output_file, "w") as txt_file:
     txt_file.write("\n")
     txt_file.write("-----------------------------")
     txt_file.write("\n")
-    txt_file.write(election_results)
+    txt_file.write(str(election_stats))
     txt_file.write("\n")
     txt_file.write("-----------------------------")
     txt_file.write("\n")
