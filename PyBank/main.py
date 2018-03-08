@@ -2,8 +2,10 @@
 import os
 import csv
 
+
 #Join file paths
-budget_data_1_csv = os.path.join("..","..","UNCCHAR201802DATA2-Class-Repository-DATA", "Homework", "Week-03-Python", "Instructions", "PyBank", "raw_data", "budget_data_1.csv")
+file_name = input("Please enter file name: ")
+file = os.path.join("raw_data", file_name)
 
 #define variables to track
 total_months = 0
@@ -18,7 +20,7 @@ greatest_increase = ["",0]
 greatest_decrease = ["",9999999999999]
 
 #Read in the needed csv file
-with open(budget_data_1_csv, newline="") as revenue_data:
+with open(file, newline="") as revenue_data:
     csvreader = csv.reader(revenue_data, delimiter=",")
     next(csvreader, None)
 #Loop through rows of data
@@ -69,7 +71,7 @@ print()
 
 
 #Output files
-output_file = os.path.join("budget_data_1_analysis.txt")
+output_file = os.path.join("budget_data_analysis.txt")
 
 with open(output_file, "w", newline="") as txt_file:
     txt_file.write("Financial Analysis")

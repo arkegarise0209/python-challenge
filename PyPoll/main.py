@@ -2,8 +2,10 @@
 import os
 import csv
 
+
 #Join file paths
-election_data_1_csv = os.path.join("..","..","UNCCHAR201802DATA2-Class-Repository-DATA", "Homework", "Week-03-Python", "Instructions", "PyPoll", "raw_data", "election_data_1.csv")
+file_name = input("Please enter file name: ")
+file = os.path.join("raw_data", file_name)
 
 #define variables to track
 total_votes = 0
@@ -12,7 +14,7 @@ election_stats = []
 election_outcome = {}
 
 #Read in the needed csv file
-with open(election_data_1_csv, newline="") as election_data:
+with open(file, newline="") as election_data:
     csvreader = csv.reader(election_data, delimiter=",")
     next(csvreader, None)
 
@@ -60,7 +62,7 @@ print()
 
 
 #Output files
-output_file = os.path.join("election_results_1.txt")
+output_file = os.path.join("election_results.txt")
 
 with open(output_file, "w") as txt_file:
     
@@ -74,8 +76,8 @@ with open(output_file, "w") as txt_file:
     txt_file.write("\n")
     txt_file.write("-----------------------------")
     txt_file.write("\n")
-    txt_file.write(str(election_stats))
-    txt_file.write("\n")
+    for row in election_stats:
+        txt_file.write(str(row)+"\n")
     txt_file.write("-----------------------------")
     txt_file.write("\n")
     txt_file.write("Winner: " + str(winner))
