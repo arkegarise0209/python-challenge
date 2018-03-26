@@ -13,7 +13,7 @@ candidate_options = []
 election_stats = []
 election_outcome = {}
 
-#Read in the needed csv file
+#Read in csv file
 with open(file, newline="") as election_data:
     csvreader = csv.reader(election_data, delimiter=",")
     next(csvreader, None)
