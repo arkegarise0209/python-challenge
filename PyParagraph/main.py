@@ -2,7 +2,7 @@
 import os
 import string
 
-#Join file paths based on selected txt file
+#Join file paths based on user input for file selection
 file_name = input("Please enter file name: ")
 file = os.path.join("raw_data", file_name)
 
