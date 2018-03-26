@@ -68,7 +68,7 @@ us_state_abbrev = {
     'Wyoming': 'WY',
 }
 
-#Read in needed csv file
+#Read in csv file
 with open(file, newline="") as employee_info:
     csvreader = csv.reader(employee_info, delimiter=",")
     next(csvreader, None)
