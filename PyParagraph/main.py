@@ -7,7 +7,7 @@ file_name = input("Please enter file name: ")
 file = os.path.join("raw_data", file_name)
 
 
-#Read in the needed text file
+#Read in text file
 with open(file, "r") as txt_file:
     paragraph = txt_file.read()
 
